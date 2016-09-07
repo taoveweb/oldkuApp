@@ -27,6 +27,8 @@ class MainTabsView extends Component {
             case 2:
                 return <BroswerView url="https://unbug.gitbooks.io/react-native-training/content/"
                                     title="React Native Training"/>;
+            case 3:
+                return <BroswerView url="http://m.oldku.com"  title="偶酷网"/>;
             default:
                 return null;
         }

@@ -42,6 +42,7 @@ class Main extends Component {
   }
 
   onNavigationStateChange = (navState) => {
+    console.log(navState);
     this.setState({
       backButtonEnabled: navState.canGoBack,
       forwardButtonEnabled: navState.canGoForward,

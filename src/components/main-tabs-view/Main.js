@@ -45,6 +45,15 @@ class Main extends Component {
           renderSelectedIcon={() => <Image source={require('./img/bookmark_filled.png')}/>}>
           {renderTab(2)}
         </TabNavigator.Item>
+        <TabNavigator.Item
+            style={styles.item}
+            title="偶酷网"
+            selected={tab === 3}
+            onPress={()=> this.handleSwitchTab(3)}
+            renderIcon={() => <Image source={require('./img/bookmark.png') }/>}
+            renderSelectedIcon={() => <Image source={require('./img/bookmark_filled.png')}/>}>
+          {renderTab(3)}
+        </TabNavigator.Item>
       </TabNavigator>
     );
   }
