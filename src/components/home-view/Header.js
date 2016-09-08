@@ -22,10 +22,10 @@ class Header extends Component {
               source={require('./img/chalkboard.png')}>
           <Image style={styles.img} source={require('./img/todo.png')}/>
           <Text style={[styles.text, styles.title]}>
-            Todo
+            偶酷摄影
           </Text>
           <Text style={[styles.text, styles.subTitle]}>
-            React Native+Redux DEMO for React Native Training
+            穷三代专业摄影网站
           </Text>
           <TouchableHighlight
             activeOpacity={Theme.active.opacity}
