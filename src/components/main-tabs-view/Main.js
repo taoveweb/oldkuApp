@@ -20,7 +20,7 @@ class Main extends Component {
         style={styles.container}>
         <TabNavigator.Item
           style={styles.item}
-          title="Home"
+          title="首页"
           selected={tab === 0}
           onPress={()=> this.handleSwitchTab(0)}
           renderIcon={() => <Image source={require('./img/home.png') }/>}
@@ -29,7 +29,7 @@ class Main extends Component {
         </TabNavigator.Item>
         <TabNavigator.Item
           style={styles.item}
-          title="Completed"
+          title="完成"
           selected={tab === 1}
           onPress={()=> this.handleSwitchTab(1)}
           renderIcon={() => <Image source={require('./img/checked.png') }/>}
@@ -38,7 +38,7 @@ class Main extends Component {
         </TabNavigator.Item>
         <TabNavigator.Item
           style={styles.item}
-          title="Book"
+          title="偶酷网"
           selected={tab === 2}
           onPress={()=> this.handleSwitchTab(2)}
           renderIcon={() => <Image source={require('./img/bookmark.png') }/>}
