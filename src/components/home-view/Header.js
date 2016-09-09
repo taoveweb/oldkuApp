@@ -20,7 +20,7 @@ class Header extends Component {
       <View style={styles.container}>
         <Image style={styles.bg}
               source={require('./img/chalkboard.png')}>
-          <Image style={styles.img} source={require('./img/todo.png')}/>
+
           <Text style={[styles.text, styles.title]}>
             偶酷摄影
           </Text>
@@ -42,11 +42,11 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 240,
+    height: 85,
   },
   bg: {
     flex: 1,
-    height: 240,
+    height: 85,
     width: width,
     justifyContent: 'center',
     alignItems: 'center',
@@ -62,10 +62,10 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   title: {
-    fontSize: 40
+    fontSize: 30
   },
   subTitle: {
-    fontSize: 10,
+    fontSize: 12,
     fontStyle: 'italic'
   },
   add: {
