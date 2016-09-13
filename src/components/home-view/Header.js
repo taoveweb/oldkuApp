@@ -24,9 +24,6 @@ class Header extends Component {
           <Text style={[styles.text, styles.title]}>
             偶酷摄影
           </Text>
-          <Text style={[styles.text, styles.subTitle]}>
-            穷三代专业摄影网站
-          </Text>
           <TouchableHighlight
             activeOpacity={Theme.active.opacity}
             underlayColor='transparent'

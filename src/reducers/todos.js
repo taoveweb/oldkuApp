@@ -9,7 +9,7 @@ function getEndTime(hour) {
 }
 
 const initialState = {
-  isFetchingAllTodos: false,
+  isFetchingAllTodos: true,
   data: [
     {
       id: Utils.GUID(),
@@ -27,6 +27,7 @@ const initialState = {
     }
   ]
 }
+
 
 export default function todos(state = initialState, action) {
   switch (action.type) {

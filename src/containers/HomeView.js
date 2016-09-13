@@ -11,7 +11,7 @@ import {
   Main,
 } from '../components/home-view';
 import Actions from '../actions';
-
+import TitleBar from '../components/common/TitleBar';
 class HomeView extends Component {
   constructor(props){
     super(props);
@@ -47,7 +47,8 @@ class HomeView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header {...this.props}/>
+        {/*<Header {...this.props}/>*/}
+        <TitleBar title={this.props.title||''}/>
         <Main {...this.props} isVisible={this.state.isVisible}/>
       </View>
     );

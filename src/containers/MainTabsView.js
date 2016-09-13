@@ -21,15 +21,14 @@ class MainTabsView extends Component {
         const { navigator } = this.props;
         switch (idx) {
             case 0:
-                return <HomeView navigator={navigator}/>;
+                return <HomeView navigator={navigator} title="偶酷摄影" />;
             case 1:
-                return <CompletedView navigator={navigator}/>;
+                /*return <CompletedView navigator={navigator}/>;*/
+                return <BroswerView url="http://m.oldku.com/m/discovery" title="发现"  />;
             case 2:
-                return <BroswerView url="http://m.oldku.com" title="偶酷网"/>;
+                return <BroswerView url="http://m.oldku.com/m/activity" title="活动"  />;
             case 3:
-                return <BroswerView url="http://m.oldku.com"  title="偶酷网"/>;
-            case 4:
-                return <BroswerView url="http://m.oldku.com"  title="偶酷网"/>;
+                return <BroswerView url="http://m.oldku.com/m/personal" title="个人主页"  />;
             default:
                 return null;
         }

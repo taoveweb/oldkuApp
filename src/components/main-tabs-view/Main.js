@@ -39,7 +39,7 @@ class Main extends Component {
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     style={styles.item}
-                    title="拍照"
+                    title="活动"
                     selected={tab === 2}
                     onPress={()=> this.handleSwitchTab(2)}
                     renderIcon={() => <Image source={require('./img/bookmark.png') }/>}
@@ -48,18 +48,9 @@ class Main extends Component {
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     style={styles.item}
-                    title="活动"
+                    title="个人"
                     selected={tab === 3}
                     onPress={()=> this.handleSwitchTab(3)}
-                    renderIcon={() => <Image source={require('./img/bookmark.png') }/>}
-                    renderSelectedIcon={() => <Image source={require('./img/bookmark_filled.png')}/>}>
-                    {renderTab(3)}
-                </TabNavigator.Item>
-                <TabNavigator.Item
-                    style={styles.item}
-                    title="个人"
-                    selected={tab === 4}
-                    onPress={()=> this.handleSwitchTab(4)}
                     renderIcon={() => <Image source={require('./img/bookmark.png') }/>}
                     renderSelectedIcon={() => <Image source={require('./img/bookmark_filled.png')}/>}>
                     {renderTab(3)}

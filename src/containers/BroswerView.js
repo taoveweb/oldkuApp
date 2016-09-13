@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import {
-  Main
+  Main,Header
 } from '../components/broswer-view';
 import TitleBar from '../components/common/TitleBar';
 import Actions from '../actions';
