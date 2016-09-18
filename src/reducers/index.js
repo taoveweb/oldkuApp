@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 import navigation from './navigation';
-import todos from './todos';
-import abc from './test';
+import homeList from './homeReducer';
 
 const rootReducer = combineReducers({
-  navigation, todos,abc
+  navigation,homeList
 });
 
 export default rootReducer;

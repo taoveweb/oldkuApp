@@ -18,37 +18,16 @@ class HomeView extends Component {
     this.state = {isVisible: true}
   }
   componentDidMount(){
-    this.currentRoute = this.props.navigator.navigationContext.currentRoute;
-    this.bindEvents();
-
-    //todo: run gulp before uncomment this
-    //fetch data from server
-    this.props.actions.fetchAllTodos();
+    this.props.actions.fetchAllHomeList();
   }
   componentWillUnmount(){
-    this.unBindEvents();
+
   }
-  bindEvents = ()=>{
-    this.willFocusSubscription  = this.props.navigator.navigationContext.addListener('willfocus', (event) => {
-      if (this.currentRoute !== event.data.route) {
-        this.setState({isVisible: false});
-      }
-    });
-    this.didFocusSubscription  = this.props.navigator.navigationContext.addListener('didfocus', (event) => {
-      if (this.currentRoute === event.data.route) {
-        this.setState({isVisible: true});
-      }
-    });
-  }
-  unBindEvents = ()=>{
-    this.willFocusSubscription.remove();
-    this.didFocusSubscription.remove();
-  }
+
   render() {
     return (
       <View style={styles.container}>
-        {/*<Header {...this.props}/>*/}
-        <TitleBar title={this.props.title||''}/>
+        {/*<TitleBar title={this.props.title||''}/>*/}
         <Main {...this.props} isVisible={this.state.isVisible}/>
       </View>
     );
@@ -63,7 +42,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    todos: state.todos
+    homeList: state.homeList
   };
 }
 

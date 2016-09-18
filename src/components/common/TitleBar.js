@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Theme.color.green
+    backgroundColor: "#fe555a"
   },
   text: {
     marginTop: 20,

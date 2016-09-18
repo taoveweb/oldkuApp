@@ -20,7 +20,7 @@ var middlewares = compose(applyMiddleware(thunk, logger), autoRehydrate());
 
 export default function configureStore() {
   const store = createStore(reducers, undefined, middlewares);
-  persistStore(store, {storage: AsyncStorage});
+  //persistStore(store, {storage: AsyncStorage});有bug
   if (isDebuggingInChrome) {
     window.store = store;
   }

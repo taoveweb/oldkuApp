@@ -26,8 +26,10 @@ class MainTabsView extends Component {
                 /*return <CompletedView navigator={navigator}/>;*/
                 return <BroswerView url="http://m.oldku.com/m/discovery" title="发现"  />;
             case 2:
-                return <BroswerView url="http://m.oldku.com/m/activity" title="活动"  />;
+                return <BroswerView url="http://m.oldku.com/m/activity" title="相机"  />;
             case 3:
+                return <BroswerView url="http://m.oldku.com/m/activity" title="活动"  />;
+            case 4:
                 return <BroswerView url="http://m.oldku.com/m/personal" title="个人主页"  />;
             default:
                 return null;

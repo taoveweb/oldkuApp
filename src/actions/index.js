@@ -1,6 +1,5 @@
 import * as  navigationActions from './navigation';
-import * as  todosActions from './todos';
-import * as  testActions from './test';
+import * as  fetchAllHomeList from './homeAction';
 
 
-export default {...navigationActions, ...todosActions,...testActions};
+export default {...navigationActions,...fetchAllHomeList};

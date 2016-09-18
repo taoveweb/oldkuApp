@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 import {
     StyleSheet,
     View,
@@ -7,6 +8,7 @@ import {
     Image,
     Dimensions,
     ScrollView,
+    ListView,
     TouchableWithoutFeedback,
     RefreshControl
     } from 'react-native';
@@ -14,109 +16,92 @@ import ListItem from './ListItem';
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
 
-
-class Row extends React.Component {
-    _onClick = () => {
-        this.props.onClick(this.props.data);
-    };
-
-    render() {
-        return (
-            <TouchableWithoutFeedback onPress={this._onClick} >
-                <View style={styles.row}>
-                    <Text style={styles.text}>
-                        {this.props.data.text + ' (' + this.props.data.clicks + ' clicks)'}
-                    </Text>
-                </View>
-            </TouchableWithoutFeedback>
-        );
-    }
-}
-
-
 class Main extends Component {
-
-
-    _onClick = (row) => {
-        row.clicks++;
-        this.setState({
-            rowData: this.state.rowData,
-        });
-    };
 
 
     constructor(props) {
         super(props);
-        var {height, width} = Dimensions.get('window');
-
-        this.state = {
-            imglist: [
-                {name: "list.jpg", width: 1242, height: 1809},
-                {name: "lista.jpg", width: 1242, height: 1340},
-                {name: "listb.jpg", width: 1242, height: 1632}
-            ],
-            winsize:{
-                width:width,
-                height:height
-            },
-            isRefreshing: false,
-            loaded: 0,
-            rowData: Array.from(new Array(20)).map(
-                (val, i) => ({text: 'Initial row ' + i, clicks: 0})),
-        };
-
+        this.state={
+            loading:1
+        }
 
     }
 
-    renderGuanZhu = () => {
-        return this.state.imglist.map((a, b)=> {
-            var winsize=this.state.winsize;
-            var w=winsize.width;
-            var h=winsize.height;
-            return (
-                <Image style={{width:w,height:parseInt(a.height*(w/a.width))}}
-                       source={{uri:'http://static.oldku.com/'+a.name}}/>
-            )
-        })
-    }
 
     renderJinXuan = () => {
-        return this.state.imglist.map((img, i)=> {
-            var winsize=this.state.winsize;
-            var w=winsize.width;
-            var h=winsize.height;
-            return (
-                <ListItem key={i} img={img} winsize={this.state.winsize} />
-            )
+        const { homeList } = this.props;
+        //console.log(this.props,'props')
+        var winsize = Dimensions.get('window');
+        //console.log(this.state.num++,homeList,'a')
+        if (!homeList || !homeList.data || homeList.data.length == 0) {
+            // console.log('d')
+            return null
+        }
+        //console.log(this.state.num++,homeList,'b');
+        //console.log(homeList.data.length)
+        return homeList.data.map((item, i)=> {
+            //console.log(this.state.num++,'c')
+            if (item.excellent == 1) {
+                return (
+                    <ListItem key={item["_id"]} item={item} winsize={winsize}/>
+                )
+            }
+
         })
     }
 
+    renderGuanzhu = () => {
+        const { homeList } = this.props;
+        //console.log(this.props,'props')
+        var winsize = Dimensions.get('window');
+        //console.log(this.state.num++,homeList,'a')
+        if (!homeList || !homeList.data || homeList.data.length == 0) {
+            // console.log('d')
+            return null
+        }
+        //console.log(this.state.num++,homeList,'b');
+        //console.log(homeList.data.length)
+        return homeList.data.map((item, i)=> {
+            //console.log(this.state.num++,'c')
+            if (item.excellent == 0) {
+                return (
+                    <ListItem key={item["_id"]} item={item} winsize={winsize}/>
+                )
+            }
 
+        })
+    }
+
+    //加载更多
+    handleEndReched = (event:Object)=> {
+        const onEndReachedThreshold = 10;
+        var ne = event.nativeEvent;
+
+        if ((ne.contentOffset.y - ne.contentSize.height + ne.layoutMeasurement.height) > onEndReachedThreshold ) {
+            if (!this.props.homeList.isFetchingMoreList && this.state.loading ==1) {
+                this.setState({loading:2});
+                this.props.actions.fetchMoreHomeList()
+            }
+        }
+        if ((ne.contentOffset.y - ne.contentSize.height + ne.layoutMeasurement.height) < onEndReachedThreshold){
+            this.setState({loading:1});
+        }
+
+    }
+
+    renderMore = ()=> {
+        if (this.props.homeList.data.length > 0) {
+            return <Text style={styles.more}>加载更多</Text>
+        }
+    }
 
     _onRefresh = () => {
-        this.setState({isRefreshing: true});
-        setTimeout(() => {
-            // prepend 10 items
-            const rowData = Array.from(new Array(10))
-                .map((val, i) => ({
-                    text: 'Loaded row ' + (+this.state.loaded + i),
-                    clicks: 0,
-                }))
-                .concat(this.state.rowData);
-
-            this.setState({
-                loaded: this.state.loaded + 10,
-                isRefreshing: false,
-                rowData: rowData,
-            });
-        }, 5000);
+        this.props.actions.fetchRefreshHomeList()
     };
 
     render() {
 
-        const rows = this.state.rowData.map((row, ii) => {
-            return <Row key={ii} data={row} onClick={this._onClick}/>;
-        });
+        const { homeList } = this.props;
 
         return (
             <View style={styles.container}>
@@ -124,30 +109,58 @@ class Main extends Component {
                     style={styles.container}
 
                     renderTabBar={
-                        ()=><DefaultTabBar    backgroundColor='rgba(255, 255, 255, 0.7)' />
-                        }
+                        ()=>
+                        <DefaultTabBar
+                           style={{position:"absolute",width:100}}
+                           underlineStyle={{height:2,backgroundColor:"#6495ed"}}
+                           textStyle={{fontSize:14,paddingTop:25}}
+                           activeTextColor="#000"
+                           inactiveTextColor="#666"
+                           backgroundColor='rgba(255, 255, 255, 0.7)'
+                        />
+                    }
                     tabBarPosition='overlayTop'
                     >
-                    <ScrollView style={{marginTop:50}} tabLabel='关注1'>
-                        {this.renderJinXuan()}
-                    </ScrollView>
+                    {<ScrollView
+                        style={{marginTop:50}}
+                        tabLabel='关注'
+                        onScroll={this.handleEndReched}
+                        scrollEventThrottle={16}
+                        refreshControl={
+                          <RefreshControl
+                            refreshing={homeList.isFetchingHomeList}
+                            onRefresh={this._onRefresh}
+                            tintColor="#666"
+                            title="Loading..."
+                            titleColor="#666"
+                            colors={['#ff0000', '#00ff00', '#0000ff']}
+                            progressBackgroundColor="#ffff00"
+                          />
+                        }
+                        >
+
+                        {this.renderGuanzhu()}
+                        {this.renderMore()}
+
+
+                    </ScrollView>}
 
                     <ScrollView
                         style={{marginTop:50}}
                         tabLabel='精选'
                         refreshControl={
                           <RefreshControl
-                            refreshing={this.state.isRefreshing}
+                            refreshing={homeList.isFetchingHomeList}
                             onRefresh={this._onRefresh}
-                            tintColor="#ff0000"
+                            tintColor="#666"
                             title="Loading..."
-                            titleColor="#00ff00"
+                            titleColor="#666"
                             colors={['#ff0000', '#00ff00', '#0000ff']}
                             progressBackgroundColor="#ffff00"
                           />
                         }
                         >
-                        {rows}
+                        {this.renderJinXuan()}
 
                     </ScrollView>
                 </ScrollableTabView>
@@ -159,7 +172,7 @@ class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:"#f0ffff"
+        backgroundColor: "#f0ffff"
     },
     loading: {
         paddingTop: 10,
@@ -172,6 +185,9 @@ const styles = StyleSheet.create({
     list: {
         flex: 1,
         padding: 20
+    },
+    more: {
+        color: "#666", textAlign: "center", backgroundColor: "#fff"
     },
     row: {
         borderColor: 'grey',
