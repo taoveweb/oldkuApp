@@ -58,6 +58,9 @@ export function fetchRefreshHomeList() {
 
         //fetching
         var olddata=getState().homeList.data;
+        if(olddata.length==0){
+            return Promise.resolve();
+        }
         const response = await fetch(APIs.homeList+"?type=refresh&created="+olddata[0].created);
         //response
         const data = await response.json();
@@ -83,6 +86,9 @@ export function fetchMoreHomeList() {
 
         //fetching
         var olddata=getState().homeList.data;
+        if(olddata.length==0){
+            return Promise.resolve();
+        }
         const response = await fetch(APIs.homeList+"?type=more&created="+olddata[olddata.length-1].created);
         //response
         const data = await response.json();

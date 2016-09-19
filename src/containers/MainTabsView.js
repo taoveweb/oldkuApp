@@ -10,6 +10,7 @@ import {
     Image
     } from 'react-native';
 import HomeView from './HomeView';
+import Discovery from './Discovery';
 import CompletedView from './CompletedView';
 import BroswerView from './BroswerView';
 import {Main} from '../components/main-tabs-view';
@@ -24,7 +25,7 @@ class MainTabsView extends Component {
                 return <HomeView navigator={navigator} title="偶酷摄影" />;
             case 1:
                 /*return <CompletedView navigator={navigator}/>;*/
-                return <BroswerView url="http://m.oldku.com/m/discovery" title="发现"  />;
+                return <Discovery navigator={navigator} title="偶酷摄影" />;
             case 2:
                 return <BroswerView url="http://m.oldku.com/m/activity" title="相机"  />;
             case 3:
