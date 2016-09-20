@@ -41,6 +41,7 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     container: {
+
         height: 58,
         justifyContent: 'center',
         alignItems: 'center',
