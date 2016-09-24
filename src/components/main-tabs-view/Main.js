@@ -34,7 +34,6 @@ class Main extends Component {
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     style={styles.item}
-                    style={styles.item}
                     titleStyle={styles.titleStyle}
 
                     title="发现"

@@ -1,8 +1,8 @@
 import * as types from '../constants/ActionTypes';
 
-export default function(state = {index: 3}, action) {
+export default function(state = {index: 0}, action) {
   switch(action.type) {
-    case types.SWITCH_MAIN_TAB:
+    case types.PERSONAL:
       return {...state, index: action.index};
   }
 

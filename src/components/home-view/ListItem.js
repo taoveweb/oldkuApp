@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import * as APIs from '../../constants/ServerAPIs';
+
 import Utils from '../../utils';
 import Icon from 'react-native-vector-icons/Ionicons';
 var TimeAgo = require('react-native-timeago');
@@ -59,7 +61,7 @@ class ListItem extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
-                    <Image style={styles.headerImg} source={{uri:'http://localhost:8083/'+item.author.headPicture}}/>
+                    <Image style={styles.headerImg} source={{uri:APIs.host+item.author.headPicture}}/>
                     <View style={styles.topContent}>
                         <Text style={styles.name}>{item.author.name}</Text>
                         <TimeAgo style={styles.time} time={item.created}/>
@@ -67,7 +69,7 @@ class ListItem extends Component {
                     </View>
                 </View>
                 {<Image style={{width:w,height:parseInt(item.height*(w/item.width))}}
-                        source={{uri:'http://localhost:8083/'+item.imgUrl}}/>}
+                        source={{uri:APIs.host+item.imgUrl}}/>}
                 {/*<Image style={{width:w,height:100}}
                  source={{uri:'http://localhost:8083/'+item.imgUrl}}/>*/}
                 <View style={styles.meta}>

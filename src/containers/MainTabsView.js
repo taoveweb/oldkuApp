@@ -11,8 +11,9 @@ import {
     } from 'react-native';
 import HomeView from './HomeView';
 import Discovery from './Discovery';
-import CompletedView from './CompletedView';
-import BroswerView from './BroswerView';
+import Publish from './Publish';
+import Personal from './Personal';
+import Activity from './Activity';
 import {Main} from '../components/main-tabs-view';
 
 import Actions from '../actions';
@@ -27,11 +28,11 @@ class MainTabsView extends Component {
                 /*return <CompletedView navigator={navigator}/>;*/
                 return <Discovery navigator={navigator} title="偶酷摄影" />;
             case 2:
-                return <BroswerView url="http://m.oldku.com/m/activity" title="相机"  />;
+                return <Publish navigator={navigator}  title="相机"  />;
             case 3:
-                return <BroswerView url="http://m.oldku.com/m/activity" title="活动"  />;
+                return <Activity title="动态"  />;
             case 4:
-                return <BroswerView url="http://m.oldku.com/m/personal" title="个人主页"  />;
+                return <Personal title="个人主页"  />;
             default:
                 return null;
         }
