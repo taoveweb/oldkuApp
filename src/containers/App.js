@@ -12,10 +12,17 @@ import BroswerView from './BroswerView';
 const ROUTES = { MainTabsView, BroswerView, EditView };
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      StatusBarStyle:"light-content"
+    }
+  }
+
   renderScene = (route, navigator) => {
     let Scene = ROUTES[route.name];
     return <Scene {...route} navigator={navigator}/>;
-  }
+  };
   configureScene = (route, routeStack) => {
     switch (route.name){
       case 'EditView':
@@ -23,13 +30,23 @@ class App extends Component {
       default:
         return Navigator.SceneConfigs.PushFromRight;
     }
-  }
+  };
+
+  renderStatusBar=(idx,style)=>{
+    let s= style || "default";
+    if(idx==4){
+      s="light-content";
+    }
+    this.setState({
+      StatusBarStyle:s
+    })
+  };
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="light-content"/>
+        <StatusBar barStyle={this.state.StatusBarStyle}/>
         <Navigator
-          initialRoute={{name: 'MainTabsView'}}
+          initialRoute={{name: 'MainTabsView',renderStatusBar:this.renderStatusBar}}
           renderScene={this.renderScene}
           configureScene={this.configureScene}/>
       </View>

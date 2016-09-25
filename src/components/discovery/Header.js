@@ -6,7 +6,7 @@ import {
     Image,
     Dimensions,
     TouchableHighlight,
-    StatusBar
+    StatusBar,
     } from 'react-native';
 import {Theme} from '../../styles';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -19,11 +19,8 @@ class Header extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar
-                    backgroundColor="blue"
-                    barStyle="default"
-                    />
+            <View style={[Theme.header,styles.container]}>
+
                 <TouchableHighlight
                     activeOpacity={Theme.active.opacity}
                     underlayColor='transparent'
@@ -41,16 +38,13 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     container: {
-
-        height: 58,
         justifyContent: 'center',
-        alignItems: 'center',
     },
     title: {
         fontSize: 12,
         color:"#000",
-        marginTop:14,
         textAlign:'center',
+        marginTop:8,
 
     },
     search: {

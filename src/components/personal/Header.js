@@ -18,21 +18,21 @@ class Header extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[Theme.header,{backgroundColor:'transparent',borderBottomWidth:0,height:200}]}>
 
           <TouchableHighlight
             activeOpacity={Theme.active.opacity}
             underlayColor='transparent'
             style={styles.share}
             onPress={this.handleAdd}>
-            <Icon style={styles.icon}  name="ios-share-alt-outline" size={24}  color="#000" />
+            <Icon style={styles.icon}  name="ios-share-outline" size={24}  color="#fff" />
           </TouchableHighlight>
         <TouchableHighlight
             activeOpacity={Theme.active.opacity}
             underlayColor='transparent'
             style={styles.setting}
             onPress={this.handleAdd}>
-          <Icon style={styles.icon}  name="ios-compass-outline" size={24}  color="#000" />
+          <Icon style={styles.icon}  name="ios-settings-outline" size={24}  color="#fff" />
           </TouchableHighlight>
 
       </View>
@@ -41,14 +41,10 @@ class Header extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: 48,
-    flexDirection:'row',
-    justifyContent:'flex-end',
-    paddingTop:15,
-    paddingRight:15,
-  },
+  icon:{
+    fontWeight:"400",
 
+  },
   title: {
     width: width/2,
     textAlign: 'center',

@@ -57,7 +57,6 @@ class ListItem extends Component {
         var w = winsize.width;
         var h = winsize.height;
 
-
         return (
             <View style={styles.container}>
                 <View style={styles.top}>
@@ -75,16 +74,19 @@ class ListItem extends Component {
                 <View style={styles.meta}>
                     <TouchableHighlight
                         style={styles.btnIcon}
+                        underlayColor="#fff"
                         onPress={this.handleMore.bind(this)}>
                         <Icon name="ios-more" size={24} color="#666"/>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={styles.btnIcon}
+                        underlayColor="#fff"
                         onPress={this.handleChat.bind(this)}>
                         <Icon name="ios-chatbubbles-outline" size={24} color="#666"/>
                     </TouchableHighlight>
                     <TouchableHighlight
                         style={styles.btnIcon}
+                        underlayColor="#fff"
                         onPress={this.handleLike.bind(this)}>
                         {this.renderLike()}
                     </TouchableHighlight>

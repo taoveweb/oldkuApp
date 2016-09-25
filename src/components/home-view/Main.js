@@ -112,11 +112,10 @@ class Main extends Component {
                         ()=>
                         <DefaultTabBar
                            style={{position:"absolute",width:100}}
-                           underlineStyle={{height:2,backgroundColor:"#6495ed"}}
+                           backgroundColor="#f5f5f5"
                            textStyle={{fontSize:14,paddingTop:25}}
                            activeTextColor="#000"
                            inactiveTextColor="#666"
-                           backgroundColor='rgba(255, 255, 255, 0.7)'
                         />
                     }
                     tabBarPosition='overlayTop'
@@ -147,7 +146,7 @@ class Main extends Component {
 
                     <ScrollView
                         style={{marginTop:50}}
-                        tabLabel='精选'
+                        tabLabel='推荐'
                         refreshControl={
                           <RefreshControl
                             refreshing={homeList.isFetchingHomeList}

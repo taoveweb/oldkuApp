@@ -17,9 +17,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Image style={styles.bg}
-              source={require('./img/welldone.jpg')}>
+      <View style={Theme.header}>
           <Text style={[styles.text, styles.title]}>
             {this.props.num}
           </Text>
@@ -30,16 +28,12 @@ class Header extends Component {
             onPress={this.handleAdd}>
             <Image source={require('./img/border_color.png')}/>
           </TouchableHighlight>
-        </Image>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height: 240,
-  },
   bg: {
     flex: 1,
     height: 240,

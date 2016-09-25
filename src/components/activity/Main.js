@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Utils from '../../utils';
 import ScrollableTabView, {DefaultTabBar,} from 'react-native-scrollable-tab-view';
 import Icon from 'react-native-vector-icons/Ionicons';
-
 import {
     StyleSheet,
     Text,
@@ -24,19 +23,19 @@ class Main extends Component {
 
                     renderTabBar={
                         ()=>
+
                             <DefaultTabBar
-                                style={{position: "absolute", width: 100}}
-                                underlineStyle={{height: 2, backgroundColor: "#6495ed"}}
-                                textStyle={{fontSize: 14, paddingTop: 25}}
+                                backgroundColor="#f5f5f5"
+                                containerWidth="100"
+                                textStyle={{fontSize: 16, paddingTop: 25}}
                                 activeTextColor="#000"
                                 inactiveTextColor="#666"
-                                backgroundColor='rgba(255, 255, 255, 0.7)'
                             />
                     }
                     tabBarPosition='overlayTop'
                 >
                     {<ScrollView
-                        style={{marginTop: 50}}
+                        style={{marginTop: 59 }}
                         tabLabel='动态'
                         scrollEventThrottle={16}
                     >
@@ -59,7 +58,7 @@ class Main extends Component {
                                 onPress={this.handleAdd}>
                                 <View style={[styles.item, styles.last]}>
                                     <Image style={styles.icon}>
-                                        <Icon name="ios-share-alt-outline" size={30}/>
+                                        <Icon name="md-bookmarks" size={30} color="#ff6600"  />
                                     </Image>
                                     <Text>关注者</Text>
                                 </View>
@@ -69,10 +68,12 @@ class Main extends Component {
                     </ScrollView>}
 
                     <ScrollView
-                        style={{marginTop: 50}}
+                        style={{marginTop: 59}}
                         tabLabel='评论'
                     >
-
+                        <View style={styles.container}>
+                            <Text>评论</Text>
+                        </View>
                     </ScrollView>
                 </ScrollableTabView>
             </View>

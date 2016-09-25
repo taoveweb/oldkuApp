@@ -7,7 +7,8 @@ import {
     Dimensions,
     View,
     Text,
-    Image
+    Image,
+    StatusBar,
     } from 'react-native';
 import HomeView from './HomeView';
 import Discovery from './Discovery';
@@ -19,8 +20,10 @@ import {Main} from '../components/main-tabs-view';
 import Actions from '../actions';
 
 class MainTabsView extends Component {
+
     renderTab = (idx)=> {
-        const { navigator } = this.props;
+        const { navigator,renderStatusBar } = this.props;
+
         switch (idx) {
             case 0:
                 return <HomeView navigator={navigator} title="偶酷摄影" />;
@@ -39,9 +42,10 @@ class MainTabsView extends Component {
     }
 
     render() {
+        const { renderStatusBar } = this.props;
         return (
             <View style={styles.container}>
-                <Main {...this.props} renderTab={this.renderTab}/>
+                <Main {...this.props}  renderStatusBar={renderStatusBar}  renderTab={this.renderTab}/>
             </View>
         );
     }
@@ -49,7 +53,8 @@ class MainTabsView extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+
     }
 });
 

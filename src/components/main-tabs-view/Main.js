@@ -11,12 +11,15 @@ let {height, width} = Dimensions.get('window');
 
 class Main extends Component {
     handleSwitchTab = (idx)=> {
+        const { renderStatusBar} = this.props;
+        renderStatusBar(idx);
         this.props.actions.switchMainTab(idx);
     }
 
     render() {
-        const { renderTab, tab } = this.props;
+        const { renderTab, tab ,renderStatusBar} = this.props;
         const size=28;
+
         return (
             <TabNavigator
                 style={styles.container}
@@ -31,6 +34,7 @@ class Main extends Component {
                     renderIcon={() => <Icon style={styles.icon}  name="ios-home-outline" size={size}  color="#000" />}
                     renderSelectedIcon={() => <Icon style={styles.icon}  name="ios-home" size={size}  color="#4F8EF7" />}>
                     {renderTab(0)}
+
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     style={styles.item}
@@ -45,7 +49,6 @@ class Main extends Component {
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     style={styles.item}
-
                     selected={tab === 2}
                     onPress={()=> this.handleSwitchTab(2)}
                     renderIcon={() => <Icon name="logo-instagram" size={45} style={{paddingTop:0,position:"relative",top:16,}} color="#000" />}
@@ -55,7 +58,7 @@ class Main extends Component {
                 <TabNavigator.Item
                     style={styles.item}
                     titleStyle={styles.titleStyle}
-                    title="活动"
+                    title="动态"
                     selected={tab === 3}
                     onPress={()=> this.handleSwitchTab(3)}
                     renderIcon={() => <Icon style={styles.icon} name="ios-ribbon-outline" size={size}  color="#000" />}
