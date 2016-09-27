@@ -111,9 +111,8 @@ class Main extends Component {
                     renderTabBar={
                         ()=>
                         <DefaultTabBar
-                           style={{position:"absolute",width:100}}
                            backgroundColor="#f5f5f5"
-                           textStyle={{fontSize:14,paddingTop:25}}
+                           textStyle={{fontSize:16,paddingTop:25}}
                            activeTextColor="#000"
                            inactiveTextColor="#666"
                         />
@@ -121,7 +120,7 @@ class Main extends Component {
                     tabBarPosition='overlayTop'
                     >
                     {<ScrollView
-                        style={{marginTop:50}}
+                        style={{marginTop:59}}
                         tabLabel='关注'
                         onScroll={this.handleEndReched}
                         scrollEventThrottle={16}
@@ -145,7 +144,7 @@ class Main extends Component {
                     </ScrollView>}
 
                     <ScrollView
-                        style={{marginTop:50}}
+                        style={{marginTop:59}}
                         tabLabel='推荐'
                         refreshControl={
                           <RefreshControl

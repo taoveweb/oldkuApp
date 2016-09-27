@@ -115,11 +115,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 7
     },
     headerPic: {
-        width: 60,
-        height: 60,
+        width: 70,
+        height: 70,
         backgroundColor: "#dadada",
-        borderRadius: 30,
-        marginTop: -30
+        borderRadius: 35,
+        marginTop: -35
     },
     head: {
         justifyContent: 'flex-start',
