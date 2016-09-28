@@ -94,11 +94,46 @@ class Main extends Component {
                     <Text style={styles.activeP}>已投稿{i}</Text>
                     <View style={styles.djs}>
                         <Icon color="#ff6600" name="md-alarm" size={14}/>
-                        <Text style={{color:"#fff",paddingHorizontal:3}}>距结束</Text>
-                        <Text style={{color:"#ff6600"}}>4天</Text>
+                        <Text style={{color: "#fff", paddingHorizontal: 3}}>距结束</Text>
+                        <Text style={{color: "#ff6600"}}>4天</Text>
                     </View>
                 </Image>
             </TouchableHighlight>
+
+        })
+    };
+
+    //影像列表
+    renderYingXianList = ()=> {
+        const dplist = [1, 1, 1, 1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1, 1, 1, 1];
+        return dplist.map((item, i)=> {
+            if (i % 2 == 0) {
+                return <TouchableHighlight key={i} style={styles.yxITem} onPress={this._showAllUser}>
+                    <View>
+                        <Text style={styles.yxTitle}>后期教程修片过程</Text>
+                        <View style={styles.yxImgBox}>
+                            <Image style={styles.yxImg}/>
+                            <Image style={styles.yxImg}/>
+                            <Image style={styles.yxImg}/>
+                            <Text style={styles.yxPicNum}>共18张图</Text>
+                        </View>
+                        <Text style={styles.yxInfo}>摄影师11月2日 | 评论 4</Text>
+                    </View>
+                </TouchableHighlight>
+            } else {
+                return <TouchableHighlight key={i} style={styles.yxITem} onPress={this._showAllUser}>
+                    <View style={styles.yxBox}>
+                        <Image style={styles.yxImg}/>
+                        <View style={styles.yxTextBox}>
+                            <Text style={styles.yxTitle}>后期教程修片过程</Text>
+                            <Text numberOfLines={1} style={styles.yxP}>写给刚刚接触风光摄影的朋友朋友朋友门</Text>
+                            <Text style={styles.yxInfo}>摄影师11月2日 | 评论 4</Text>
+                        </View>
+
+                    </View>
+                </TouchableHighlight>
+            }
+
 
         })
     }
@@ -121,7 +156,7 @@ class Main extends Component {
                             />
                     }
                     tabBarPosition='overlayTop'
-                    initialPage={1}
+                    initialPage={2}
                 >
                     {<ScrollView
                         style={{marginTop: 59}}
@@ -186,7 +221,7 @@ class Main extends Component {
                         scrollEventThrottle={16}
 
                     >
-                        <Text>影像</Text>
+                        {this.renderYingXianList()}
                     </ScrollView>}
                 </ScrollableTabView>
 
@@ -196,6 +231,48 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
+    yxBox:{
+        flexDirection:'row'
+    },
+    yxTextBox:{
+        width:width-(width - 20) / 3-15,
+        marginLeft:5
+    },
+    yxInfo:{
+      fontSize:12,
+        color:"#666",
+        paddingTop:15,
+    },
+    yxPicNum:{
+      position:'absolute',
+        bottom:0,
+        right:1,
+        backgroundColor:"rgba(0,0,0,0.5)",
+        color:"#fff",
+        fontSize:12,
+        paddingHorizontal:4,
+        paddingVertical:2,
+    },
+    yxImgBox: {
+        flexDirection: 'row',
+    },
+    yxImg: {
+        width: (width - 20) / 3-3,
+        height: (width - 20) / 3-3,
+        backgroundColor: '#dadada',
+        marginRight:4,
+    },
+    yxTitle: {
+        fontSize: 16,
+        paddingBottom: 15,
+    },
+    yxITem: {
+        paddingVertical: 15,
+        borderBottomColor: "#dadada",
+        borderBottomWidth: 1,
+        paddingHorizontal: 10,
+        position:"relative"
+    },
     activeItem: {
         flex: 1,
 
@@ -220,11 +297,11 @@ const styles = StyleSheet.create({
     },
     djs: {
         flexDirection: 'row',
-        backgroundColor:"rgba(0,0,0,0.8)",
-        paddingHorizontal:4,
-        paddingVertical:2,
-        borderRadius:5,
-        marginTop:8,
+        backgroundColor: "rgba(0,0,0,0.8)",
+        paddingHorizontal: 4,
+        paddingVertical: 2,
+        borderRadius: 5,
+        marginTop: 8,
     },
     container: {
         flex: 1,
@@ -327,20 +404,21 @@ const styles = StyleSheet.create({
     },
     signList: {
         marginHorizontal: 10,
+        marginRight: 6,
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
     signItem: {
-        width: (width - 20) / 3 - 4,
-        height: (width - 20) / 3 - 4,
+        width: (width - 20) / 3 - 3,
+        height: (width - 20) / 3 - 3,
         justifyContent: 'center',
         alignItems: 'center',
-        marginHorizontal: 2,
-        marginVertical: 2,
+        marginRight: 4,
+        marginBottom: 4,
     },
     signImg: {
-        width: (width - 20) / 3 - 4,
-        height: (width - 20) / 3 - 4,
+        width: (width - 20) / 3 - 3,
+        height: (width - 20) / 3 - 3,
         backgroundColor: "#ff6600",
         justifyContent: 'flex-end',
         alignItems: 'center',
