@@ -156,7 +156,7 @@ class Main extends Component {
                             />
                     }
                     tabBarPosition='overlayTop'
-                    initialPage={2}
+                    initialPage={0}
                 >
                     {<ScrollView
                         style={{marginTop: 59}}
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
 
         height: width * 9 / 16,
         backgroundColor: "#ff6600",
-        marginBottom: 3,
+        marginBottom: 1,
     },
     activeImg: {
         alignItems: 'center',
@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        backgroundColor: "#f4f4f4",
+        backgroundColor: "#dadada",
     },
     discoveryList: {
         marginHorizontal: 10,
@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
         height: 42,
         borderRadius: 21,
         margin: 0,
-        backgroundColor: '#f5f5dc',
+        backgroundColor: '#dadada',
 
     },
     titleText: {

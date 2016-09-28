@@ -12,8 +12,31 @@ import {
 } from 'react-native';
 
 import {Theme} from '../../styles';
+const {height, width} = Dimensions.get('window');
 
 class Main extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            height:height
+        }
+    }
+    onScrollHadle=(event:Object)=>{
+        console.log(event)
+    }
+    //图博列表
+    renderＴuboList = ()=> {
+        const tblist = [1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1];
+        return tblist.map((item, i)=> {
+            return <TouchableHighlight key={i} style={styles.tbItem} onPress={this._showAllUser}>
+                <Image style={styles.tbItemImg}>
+                    <Text style={styles.tbItemText}>厦门风景</Text>
+                </Image>
+            </TouchableHighlight>
+
+        })
+
+    };
 
     render() {
         return (
@@ -51,12 +74,14 @@ class Main extends Component {
                     tabBarPosition='overlayTop'
                 >
                     {<ScrollView
-                        style={[styles.container,{marginTop: 40,}]}
+                        scrollEnabled={true}
+                        onScroll={this.onScrollHadle}
+                        style={[styles.container, {marginTop: 40,height:this.state.height-60}]}
                         tabLabel='图博'
                         scrollEventThrottle={16}
                     >
-                        <View style={{flex:1}}>
-                        <Text>图博</Text>
+                        <View style={styles.tuboList}>
+                            {this.renderＴuboList()}
                         </View>
 
                     </ScrollView>}
@@ -65,15 +90,15 @@ class Main extends Component {
                         style={{marginTop: 40}}
                         tabLabel='喜欢'
                     >
-                        <View style={{flex:1}}>
-                            <Text>喜欢</Text>
+                        <View style={styles.tuboList}>
+                            {this.renderＴuboList()}
                         </View>
                     </ScrollView>
                     <ScrollView
                         style={{marginTop: 40}}
                         tabLabel='资料'
                     >
-                        <View style={{flex:1}}>
+                        <View style={{flex: 1}}>
                             <Text>资料</Text>
                         </View>
                     </ScrollView>
@@ -85,6 +110,35 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
+    tbItemText: {
+        position: 'absolute',
+        left: 0,
+        bottom:0,
+        paddingHorizontal:4,
+        paddingVertical:4,
+        color:"#fff",
+        zIndex:2,
+        fontSize:12
+    },
+    tbItemImg:{
+        position: 'relative',
+        flex:1,
+    },
+    tbItem: {
+        width: (width - 20) / 2 - 2,
+        height: (width - 20) / 2 - 2,
+        backgroundColor: "#dadada",
+        marginBottom: 4,
+        marginRight: 4,
+        position: 'relative',
+
+    },
+    tuboList: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginLeft: 10,
+        marginTop: 10,
+    },
     container: {
         flex: 1,
         backgroundColor: '#fff'
@@ -100,7 +154,7 @@ const styles = StyleSheet.create({
     introduction: {
         fontSize: 10,
         color: "#666",
-        paddingVertical:5,
+        paddingVertical: 5,
     },
     text: {
         color: "#666",
