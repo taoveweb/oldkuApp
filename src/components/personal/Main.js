@@ -15,18 +15,19 @@ import {Theme} from '../../styles';
 const {height, width} = Dimensions.get('window');
 
 class Main extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            height:height
+        this.state = {
+            height: height
         }
     }
-    onScrollHadle=(event:Object)=>{
+
+    onScrollHadle = (event: Object)=> {
         console.log(event)
     }
     //图博列表
     renderＴuboList = ()=> {
-        const tblist = [1, 1, 1, 1, 1, 1,1, 1, 1, 1, 1, 1];
+        const tblist = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
         return tblist.map((item, i)=> {
             return <TouchableHighlight key={i} style={styles.tbItem} onPress={this._showAllUser}>
                 <Image style={styles.tbItemImg}>
@@ -37,11 +38,18 @@ class Main extends Component {
         })
 
     };
+    //标题
+    renderTitle = (title)=> {
+        return <View style={styles.title}>
+            <Text style={styles.titleText}>{title}</Text>
+
+        </View>
+    };
 
     render() {
         return (
 
-            <View style={styles.container}>
+            <View style={{flex:1,backgroundColor:'#fff',height:height-249}}>
 
                 <View style={styles.head}>
                     <Image style={styles.headerPic}/>
@@ -56,7 +64,7 @@ class Main extends Component {
                     <Text style={styles.introduction}>暂无简介</Text>
                 </View>
 
-                <ScrollableTabView
+              <ScrollableTabView
                     style={styles.container}
 
                     renderTabBar={
@@ -72,11 +80,12 @@ class Main extends Component {
                             />
                     }
                     tabBarPosition='overlayTop'
+
                 >
                     {<ScrollView
                         scrollEnabled={true}
                         onScroll={this.onScrollHadle}
-                        style={[styles.container, {marginTop: 40,height:this.state.height-60}]}
+                        style={[styles.container, {marginTop: 40,}]}
                         tabLabel='图博'
                         scrollEventThrottle={16}
                     >
@@ -95,11 +104,37 @@ class Main extends Component {
                         </View>
                     </ScrollView>
                     <ScrollView
-                        style={{marginTop: 40}}
+                        style={{marginTop: 40,flex:1}}
                         tabLabel='资料'
                     >
-                        <View style={{flex: 1}}>
-                            <Text>资料</Text>
+                        <View style={styles.zlBox}>
+                            <View style={styles.zlSection}>
+                                <View style={[styles.zlItem, styles.borderBottom]}>
+                                    <Text style={styles.label}>简介</Text>
+                                    <Text>这家伙很懒什么都没有留下</Text>
+                                </View>
+                                <View style={styles.zlItem}>
+                                    <Text style={styles.label}>居住地</Text>
+                                    <Text>福建</Text>
+                                </View>
+                            </View>
+                            <View style={styles.zlSection}>
+                                {this.renderTitle("常用标签")}
+                                <View style={{height:60}}>
+
+                                </View>
+                            </View>
+                            <View style={[styles.zlSection,{flex:1,paddingBottom:15,marginBottom:0,borderBottomWidth:0}]}>
+                                {this.renderTitle("使用过的器材")}
+                                <View style={styles.zl1Item}>
+                                    <Text style={styles.label}>简介</Text>
+                                    <Text>这家伙很懒什么都没有留下</Text>
+                                </View>
+                                <View style={styles.zl1Item}>
+                                    <Text style={styles.label}>居住地</Text>
+                                    <Text>福建</Text>
+                                </View>
+                            </View>
                         </View>
                     </ScrollView>
                 </ScrollableTabView>
@@ -110,19 +145,66 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
+    label: {
+        color: "#666",
+        paddingRight: 10,
+    },
+    zlSection: {
+        borderBottomWidth: 1,
+        borderBottomColor: "#dadada",
+        backgroundColor: "#fff",
+        marginBottom:8,
+    },
+    borderBottom: {
+        borderBottomWidth: 1,
+        borderBottomColor: "#dadada",
+    },
+    zlItem: {
+        marginHorizontal: 10,
+        paddingVertical: 15,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+    },
+    zl1Item:{
+        paddingHorizontal: 10,
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        paddingTop:4,
+    },
+    zlBox: {
+        flex: 1,
+        backgroundColor:'#f5f5f5',
+
+    },
+    title: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 10,
+        borderLeftWidth: 2,
+        borderLeftColor: "#ffa500",
+        height: 12,
+        marginVertical: 10,
+        marginTop: 20,
+
+
+    },
+    titleText: {
+        fontSize: 12,
+        paddingLeft: 4
+    },
     tbItemText: {
         position: 'absolute',
         left: 0,
-        bottom:0,
-        paddingHorizontal:4,
-        paddingVertical:4,
-        color:"#fff",
-        zIndex:2,
-        fontSize:12
+        bottom: 0,
+        paddingHorizontal: 4,
+        paddingVertical: 4,
+        color: "#fff",
+        zIndex: 2,
+        fontSize: 12
     },
-    tbItemImg:{
+    tbItemImg: {
         position: 'relative',
-        flex:1,
+        flex: 1,
     },
     tbItem: {
         width: (width - 20) / 2 - 2,

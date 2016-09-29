@@ -22,9 +22,9 @@ class Personal extends Component {
     render() {
         const {width,height}=Dimensions.get('window');
         return (
-            <Image resizeMode="cover" style={{flex:1,}}
+            <Image resizeMode="cover" style={{flex:1}}
                 source={{uri: APIs.host + '/images/20169/hp_85d11e0619966bbfeec1efa1e2050cae.jpeg'}}>
-                <ScrollView style={styles.container}>
+                <ScrollView style={[styles.container]}>
                     {/*this.props.renderStatusBar('light-content')*/}
                     <Header {...this.props} />
                     <Main {...this.props}/>
