@@ -33,7 +33,6 @@ export function fetchAllHomeList() {
         const response = await fetch(APIs.homeList);
         //response
         const data = await response.json();
-
         //dispatch end fetch action
         return dispatch({
             type: types.FETCH_ALL_HOME_LIST,

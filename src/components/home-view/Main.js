@@ -14,7 +14,7 @@ import {
     } from 'react-native';
 import ListItem from './ListItem';
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
-
+var loading=1;
 
 class Main extends Component {
 
@@ -51,6 +51,7 @@ class Main extends Component {
     }
 
     renderGuanzhu = () => {
+        console.log('a')
         const { homeList } = this.props;
         //console.log(this.props,'props')
         var winsize = Dimensions.get('window');
@@ -59,8 +60,6 @@ class Main extends Component {
             // console.log('d')
             return null
         }
-        //console.log(this.state.num++,homeList,'b');
-        //console.log(homeList.data.length)
         return homeList.data.map((item, i)=> {
             //console.log(this.state.num++,'c')
             if (item.excellent == 0) {
@@ -73,19 +72,22 @@ class Main extends Component {
     }
 
     //加载更多
-    handleEndReched = (event:Object)=> {
-        const onEndReachedThreshold = 10;
-        var ne = event.nativeEvent;
-
-        if ((ne.contentOffset.y - ne.contentSize.height + ne.layoutMeasurement.height) > onEndReachedThreshold ) {
-            if (!this.props.homeList.isFetchingMoreList && this.state.loading ==1) {
-                this.setState({loading:2});
+    handleEndReched = (event)=> {
+        const onEndReachedThreshold = 30;
+        var nativeEvent = event.nativeEvent;
+        var y = nativeEvent.contentInset.top + nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height
+            -nativeEvent.contentSize.height;
+        var yy=nativeEvent.contentInset.top + nativeEvent.contentOffset.y;
+        if (y > onEndReachedThreshold && yy>0)  {
+            if (!this.props.homeList.isFetchingMoreList && loading ==1 ) {
+                loading=2;
                 this.props.actions.fetchMoreHomeList()
             }
         }
-        if ((ne.contentOffset.y - ne.contentSize.height + ne.layoutMeasurement.height) < onEndReachedThreshold){
-            this.setState({loading:1});
+        if (y < onEndReachedThreshold){
+            loading=1;
         }
+
 
     }
 
@@ -159,6 +161,8 @@ class Main extends Component {
                         }
                         >
                         {this.renderJinXuan()}
+                        {this.renderMore()}
+
 
                     </ScrollView>
                 </ScrollableTabView>

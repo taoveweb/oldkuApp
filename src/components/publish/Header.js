@@ -16,9 +16,24 @@ let {height, width} = Dimensions.get('window');
 class Header extends Component {
     handleAdd = ()=> {
         this.props.navigator.push({name: 'EditView'});
+    };
+
+    readerNextBtn = ()=> {
+        const {canpublish}=this.props;
+        var opacity=1;
+        if(!canpublish){
+           opacity=0.5;
+        }
+        return <TouchableHighlight disabled={canpublish} onPress={this.handleAdd}
+        style={[styles.nextStepBox, {opacity: opacity}]}>
+        <Text style={styles.nextStepText}>下一步</Text>
+        </TouchableHighlight>
     }
 
     render() {
+
+
+
         return (
             <View style={[Theme.header, styles.header]}>
                 <TouchableHighlight
@@ -32,16 +47,14 @@ class Header extends Component {
                     underlayColor='transparent'
                     style={styles.add}
                     onPress={this.handleAdd}>
-                    <View style={{flexDirection:'row'}}>
+                    <View style={{flexDirection: 'row'}}>
                         <Text style={styles.selectSource}>相机胶卷</Text>
-                        <Icon name="ios-arrow-down" size={20} />
+                        <Icon name="ios-arrow-down" size={20}/>
                     </View>
 
                 </TouchableHighlight>
 
-                <View style={styles.nextStepBox}>
-                    <Text style={styles.nextStepText}>下一步</Text>
-                </View>
+                {this.readerNextBtn()}
 
             </View>
         );
@@ -74,7 +87,7 @@ const styles = StyleSheet.create({
         height: 23,
         backgroundColor: "#ffa500",
         borderRadius: 12,
-        overflow:"hidden",
+        overflow: "hidden",
     },
     nextStepText: {
         textAlign: 'center',

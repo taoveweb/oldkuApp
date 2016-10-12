@@ -6,8 +6,11 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "@remobile/react-native-refresh-infinite-listview": "^1.0.4",
     "react": "^15.3.2",
     "react-native": "^0.34.0",
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
+    "react-native-camera-roll-picker": "^1.1.8",
     "react-native-scrollable-tab-view": "^0.6.0",
     "react-native-swiper": "^1.4.11",
     "react-native-tab-navigator": "^0.3.2",
@@ -17,7 +20,8 @@
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-persist": "^3.3.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "rn-camera-roll": "0.0.5"
   },
   "devDependencies": {
     "browser-sync": "^2.13.0",

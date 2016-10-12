@@ -52,6 +52,21 @@ class ListItem extends Component {
         }
     }
 
+    renderImgs=()=>{
+
+        var {item,winsize} = this.props;
+        var w = winsize.width;
+        var imgs=item.imgs;
+
+        if(imgs.length==1){
+            var img=imgs[0];
+            return <Image style={{width:w,height:parseInt(img.height*(w/img.width))}}
+                          source={{uri:APIs.host+"/images/"+img.imgUrl}}/>
+        }
+
+
+    }
+
     render() {
         var {item,winsize} = this.props;
         var w = winsize.width;
@@ -67,8 +82,7 @@ class ListItem extends Component {
                         <Text style={styles.like}>{item.meta.length}喜欢</Text>
                     </View>
                 </View>
-                {<Image style={{width:w,height:parseInt(item.height*(w/item.width))}}
-                        source={{uri:APIs.host+item.imgUrl}}/>}
+                {this.renderImgs()}
                 {/*<Image style={{width:w,height:100}}
                  source={{uri:'http://localhost:8083/'+item.imgUrl}}/>*/}
                 <View style={styles.meta}>
@@ -93,7 +107,7 @@ class ListItem extends Component {
                 </View>
                 <View style={styles.sign}>
                     {
-                        item.sign.map((val, i)=> {
+                        item.tags.map((val, i)=> {
                             return <Text key={new Date()+i} style={styles.signText}>{val}</Text>
                         })
                     }
