@@ -61,7 +61,51 @@ class ListItem extends Component {
         if(imgs.length==1){
             var img=imgs[0];
             return <Image style={{width:w,height:parseInt(img.height*(w/img.width))}}
-                          source={{uri:APIs.host+"/images/"+img.imgUrl}}/>
+                          source={{uri:APIs.host+"/images/"+img.imgUrl.replace('.','_600.')}}/>
+        }
+        if(imgs.length==2){
+            var img1=imgs[0];
+            var img2=imgs[1];
+            var w1=w/2;
+            return <View style={{flexDirection:'row'}}>
+                <Image style={{width:w1,height:w1}}
+                          source={{uri:APIs.host+"/images/"+img1.imgUrl.replace('.','_600.')}}/>
+                <Image style={{width:w1,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img2.imgUrl.replace('.','_600.')}}/>
+            </View>
+        }
+        if(imgs.length==3){
+            var img1=imgs[0];
+            var img2=imgs[1];
+            var img3=imgs[2];
+            var w1=w/2;
+            return <View style={{flexDirection:'row',flexWrap:'wrap'}}>
+                <Image style={{width:w1,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img1.imgUrl.replace('.','_600.')}}/>
+                <Image style={{width:w1,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img2.imgUrl.replace('.','_600.')}}/>
+                <Image style={{width:w,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img3.imgUrl.replace('.','_600.')}}/>
+            </View>
+        }
+
+        if(imgs.length>=4){
+            var img1=imgs[0];
+            var img2=imgs[1];
+            var img3=imgs[2];
+            var img4=imgs[3];
+            var w1=w/2;
+            return <View style={{flexDirection:'row',flexWrap:'wrap'}}>
+                <Image style={{width:w1,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img1.imgUrl.replace('.','_600.')}}/>
+                <Image style={{width:w1,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img2.imgUrl.replace('.','_600.')}}/>
+                <Image style={{width:w1,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img3.imgUrl.replace('.','_600.')}}/>
+                <Image style={{width:w1,height:w1}}
+                       source={{uri:APIs.host+"/images/"+img4.imgUrl.replace('.','_600.')}}/>
+                <Text style={styles.imgsN}>共{imgs.length}张图片</Text>
+            </View>
         }
 
 
@@ -118,9 +162,21 @@ class ListItem extends Component {
 }
 
 const styles = StyleSheet.create({
+    imgsN:{
+        position:'absolute',
+        right:10,
+        bottom:10,
+        color:'#fff',
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        fontSize:12,
+        borderRadius:4,
+        overflow:'hidden',
+        paddingHorizontal:4,
+        paddingVertical:2
+    },
     container: {
         flexDirection: 'column',
-        marginTop: 8,
+        marginBottom: 5,
         backgroundColor: '#fff',
     },
     headerImg: {

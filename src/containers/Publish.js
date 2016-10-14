@@ -16,7 +16,7 @@ class Publish extends Component {
     constructor(props){
         super(props);
         this.state={
-            canpublish:false,
+            canpublish:true,
         }
     }
 

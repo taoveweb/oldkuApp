@@ -25,9 +25,9 @@ class Main extends Component {
         //设置发布状态
         const {setPublishBtnState}=this.props;
         if(data.length>0){
-            setPublishBtnState(true)
-        }else{
             setPublishBtnState(false)
+        }else{
+            setPublishBtnState(true)
         }
     }
 

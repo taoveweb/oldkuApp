@@ -32,9 +32,8 @@ class Bar extends Component {
         <TouchableHighlight
           activeOpacity={Theme.active.opacity}
           underlayColor='transparent'
-          onPress={this.handleSubmit}
           style={styles.btn}>
-          <Image style={styles.btnIcon} source={require('./img/ok_filled.png')}/>
+         <Text>提交</Text>
         </TouchableHighlight>
       </View>
     );

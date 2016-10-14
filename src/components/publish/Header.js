@@ -20,12 +20,12 @@ class Header extends Component {
 
     readerNextBtn = ()=> {
         const {canpublish}=this.props;
-        var opacity=1;
+        var opacity=0.5;
         if(!canpublish){
-           opacity=0.5;
+           opacity=1;
         }
         return <TouchableHighlight disabled={canpublish} onPress={this.handleAdd}
-        style={[styles.nextStepBox, {opacity: opacity}]}>
+        style={[styles.nextStepBox, {opacity: opacity,position:'absolute',right:10,bottom:10}]}>
         <Text style={styles.nextStepText}>下一步</Text>
         </TouchableHighlight>
     }
@@ -36,16 +36,16 @@ class Header extends Component {
 
         return (
             <View style={[Theme.header, styles.header]}>
-                <TouchableHighlight
+              {/*  <TouchableHighlight
                     activeOpacity={Theme.active.opacity}
                     underlayColor='transparent'
                     onPress={this.handleAdd}>
                     <Text style={styles.cancel}>到消</Text>
-                </TouchableHighlight>
+                </TouchableHighlight>*/}
                 <TouchableHighlight
                     activeOpacity={Theme.active.opacity}
                     underlayColor='transparent'
-                    style={styles.add}
+
                     onPress={this.handleAdd}>
                     <View style={{flexDirection: 'row'}}>
                         <Text style={styles.selectSource}>相机胶卷</Text>
@@ -64,7 +64,7 @@ class Header extends Component {
 const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: 'center',
     },
     text: {

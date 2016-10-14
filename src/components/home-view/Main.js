@@ -11,25 +11,21 @@ import {
     ListView,
     TouchableWithoutFeedback,
     RefreshControl
-    } from 'react-native';
+} from 'react-native';
 import ListItem from './ListItem';
-import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
-var loading=1;
+import ScrollableTabView, {DefaultTabBar,} from 'react-native-scrollable-tab-view';
+var loading = 1;
 
 class Main extends Component {
 
 
     constructor(props) {
         super(props);
-        this.state={
-            loading:1
-        }
-
     }
 
 
     renderJinXuan = () => {
-        const { homeList } = this.props;
+        const {homeList} = this.props;
         //console.log(this.props,'props')
         var winsize = Dimensions.get('window');
         //console.log(this.state.num++,homeList,'a')
@@ -39,20 +35,30 @@ class Main extends Component {
         }
         //console.log(this.state.num++,homeList,'b');
         //console.log(homeList.data.length)
-        return homeList.data.map((item, i)=> {
-            //console.log(this.state.num++,'c')
+        var excellent = [];
+        homeList.data.forEach((item, i)=> {
             if (item.excellent == 1) {
+                excellent.push(item)
+            }
+        });
+        if (excellent.length > 0) {
+            return excellent.map((item, i)=> {
+                //console.log(this.state.num++,'c')
                 return (
                     <ListItem key={item["_id"]} item={item} winsize={winsize}/>
                 )
-            }
+            })
 
-        })
+        } else {
+            return   <Text
+                    style={{fontSize:20,flex:1,color:"#ff6600",paddingTop:200,alignItems:'center',justifyContent:'center',textAlign:'center'}}>
+                    暂无内容</Text>
+        }
+
     }
 
     renderGuanzhu = () => {
-        console.log('a')
-        const { homeList } = this.props;
+        const {homeList} = this.props;
         //console.log(this.props,'props')
         var winsize = Dimensions.get('window');
         //console.log(this.state.num++,homeList,'a')
@@ -73,19 +79,19 @@ class Main extends Component {
 
     //加载更多
     handleEndReched = (event)=> {
-        const onEndReachedThreshold = 30;
+        const onEndReachedThreshold = 60;
         var nativeEvent = event.nativeEvent;
         var y = nativeEvent.contentInset.top + nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height
-            -nativeEvent.contentSize.height;
-        var yy=nativeEvent.contentInset.top + nativeEvent.contentOffset.y;
-        if (y > onEndReachedThreshold && yy>0)  {
-            if (!this.props.homeList.isFetchingMoreList && loading ==1 ) {
-                loading=2;
+            - nativeEvent.contentSize.height;
+        var yy = nativeEvent.contentInset.top + nativeEvent.contentOffset.y;
+        if (y > onEndReachedThreshold && yy > 0) {
+            if (!this.props.homeList.isFetchingMoreList && loading == 1) {
+                loading = 2;
                 this.props.actions.fetchMoreHomeList()
             }
         }
-        if (y < onEndReachedThreshold){
-            loading=1;
+        if (y < onEndReachedThreshold) {
+            loading = 1;
         }
 
 
@@ -93,7 +99,7 @@ class Main extends Component {
 
     renderMore = ()=> {
         if (this.props.homeList.data.length > 0) {
-            return <Text style={styles.more}>加载更多</Text>
+            return <Text style={styles.more}>上拉加载更多</Text>
         }
     }
 
@@ -103,7 +109,7 @@ class Main extends Component {
 
     render() {
 
-        const { homeList } = this.props;
+        const {homeList} = this.props;
 
         return (
             <View style={styles.container}>
@@ -112,32 +118,32 @@ class Main extends Component {
 
                     renderTabBar={
                         ()=>
-                        <DefaultTabBar
-                           backgroundColor="#f5f5f5"
-                           textStyle={{fontSize:16,paddingTop:25}}
-                           activeTextColor="#000"
-                           inactiveTextColor="#666"
-                        />
+                            <DefaultTabBar
+                                backgroundColor="#f5f5f5"
+                                textStyle={{fontSize: 16, paddingTop: 25}}
+                                activeTextColor="#000"
+                                inactiveTextColor="#666"
+                            />
                     }
                     tabBarPosition='overlayTop'
-                    >
+                >
                     {<ScrollView
-                        style={{marginTop:59}}
+                        style={{marginTop: 59}}
                         tabLabel='关注'
                         onScroll={this.handleEndReched}
                         scrollEventThrottle={16}
                         refreshControl={
-                          <RefreshControl
-                            refreshing={homeList.isFetchingHomeList}
-                            onRefresh={this._onRefresh}
-                            tintColor="#666"
-                            title="Loading..."
-                            titleColor="#666"
-                            colors={['#ff0000', '#00ff00', '#0000ff']}
-                            progressBackgroundColor="#ffff00"
-                          />
+                            <RefreshControl
+                                refreshing={homeList.isFetchingHomeList}
+                                onRefresh={this._onRefresh}
+                                tintColor="#666"
+                                title="Loading..."
+                                titleColor="#666"
+                                colors={['#ff0000', '#00ff00', '#0000ff']}
+                                progressBackgroundColor="#ffff00"
+                            />
                         }
-                        >
+                    >
 
                         {this.renderGuanzhu()}
                         {this.renderMore()}
@@ -146,23 +152,21 @@ class Main extends Component {
                     </ScrollView>}
 
                     <ScrollView
-                        style={{marginTop:59}}
+                        style={{marginTop: 59}}
                         tabLabel='推荐'
                         refreshControl={
-                          <RefreshControl
-                            refreshing={homeList.isFetchingHomeList}
-                            onRefresh={this._onRefresh}
-                            tintColor="#666"
-                            title="Loading..."
-                            titleColor="#666"
-                            colors={['#ff0000', '#00ff00', '#0000ff']}
-                            progressBackgroundColor="#ffff00"
-                          />
+                            <RefreshControl
+                                refreshing={homeList.isFetchingHomeList}
+                                onRefresh={this._onRefresh}
+                                tintColor="#666"
+                                title="Loading..."
+                                titleColor="#666"
+                                colors={['#ff0000', '#00ff00', '#0000ff']}
+                                progressBackgroundColor="#ffff00"
+                            />
                         }
-                        >
+                    >
                         {this.renderJinXuan()}
-                        {this.renderMore()}
-
 
                     </ScrollView>
                 </ScrollableTabView>
@@ -174,7 +178,7 @@ class Main extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f0ffff"
+        backgroundColor: "#f8f8ff"
     },
     loading: {
         paddingTop: 10,
@@ -189,7 +193,11 @@ const styles = StyleSheet.create({
         padding: 20
     },
     more: {
-        color: "#666", textAlign: "center", backgroundColor: "#fff"
+
+        color: "#666", textAlign: "center",
+        position:'relative',
+        marginBottom:-33,
+        paddingVertical:8,
     },
     row: {
         borderColor: 'grey',

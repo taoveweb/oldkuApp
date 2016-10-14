@@ -72,7 +72,9 @@ class Main extends Component {
                         tabLabel='评论'
                     >
                         <View style={styles.container}>
-                            <Text>评论</Text>
+                            <Text
+                                style={{fontSize:20,flex:1,color:"#ff6600",paddingTop:200,alignItems:'center',justifyContent:'center',textAlign:'center'}}>
+                                暂无内容</Text>
                         </View>
                     </ScrollView>
                 </ScrollableTabView>
