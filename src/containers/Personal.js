@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        personal: state.personal
+        personal: state.personal,
+        homeList: state.homeList,
     };
 }
 

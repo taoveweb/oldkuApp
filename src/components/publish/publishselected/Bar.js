@@ -8,7 +8,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Theme} from '../../styles';
+import {Theme} from '../../../styles';
 
 let {height, width} = Dimensions.get('window');
 

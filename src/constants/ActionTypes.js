@@ -25,6 +25,7 @@ export const REFRESH_ALL_DISCOVERY_LIST = 'REFRESH_ALL_DISCOVERY_LIST';
 
 //publish
 export const PUBLSIH = 'PUBLISH';
+export const PUBLSIH_SELECT_IMAGES = 'PUBLSIH_SELECT_IMAGES';
 
 //personal
 export const PERSONAL = 'PERSONAL';

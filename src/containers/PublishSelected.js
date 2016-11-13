@@ -10,7 +10,7 @@ import {
 import {
     Bar,
     Main,
-} from '../components/edit-view';
+} from '../components/publish/publishselected';
 let {height, width} = Dimensions.get('window');
 import Actions from '../actions';
 

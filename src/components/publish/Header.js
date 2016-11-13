@@ -14,9 +14,24 @@ import Icon from 'react-native-vector-icons/Ionicons';
 let {height, width} = Dimensions.get('window');
 
 class Header extends Component {
+
+    componentDidMount() {
+        //this.props.navigator.push({name: 'PublishSelected',imgs:[]});
+    }
+
+    componentDidUpdate() {
+
+    }
+
+
+    componentWillUnmount() {
+    }
     handleAdd = ()=> {
-        this.props.navigator.push({name: 'EditView'});
+        const {publish}=this.props;
+        this.props.navigator.push({name: 'PublishSelected',imgs:publish.imgs});
     };
+
+
 
     readerNextBtn = ()=> {
         const {canpublish}=this.props;
@@ -99,3 +114,4 @@ const styles = StyleSheet.create({
 });
 
 export default Header;
+

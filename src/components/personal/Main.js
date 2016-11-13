@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ScrollableTabView, {DefaultTabBar,} from 'react-native-scrollable-tab-view';
+import * as APIs from '../../constants/ServerAPIs';
 
 import {
     StyleSheet,
@@ -42,17 +43,26 @@ class Main extends Component {
     renderTitle = (title)=> {
         return <View style={styles.title}>
             <Text style={styles.titleText}>{title}</Text>
-
         </View>
     };
 
     render() {
+        const {homeList}=this.props;
+        var img='';
+        console.log(homeList)
+        if(homeList.data.length>0){
+            img=homeList.data[0]['author']['headPicture']
+        }
+
+
+        console.log(APIs.host+img)
+
         return (
 
             <View style={{flex:1,backgroundColor:'#fff',height:height-249}}>
 
                 <View style={styles.head}>
-                    <Image style={styles.headerPic}/>
+                    <Image source={{uri:APIs.host+img}} style={styles.headerPic}/>
                     <Text style={styles.name}>子一824</Text>
                     <View style={styles.info}>
                         <Text style={styles.text}>关注</Text>
@@ -255,7 +265,9 @@ const styles = StyleSheet.create({
         height: 70,
         backgroundColor: "#dadada",
         borderRadius: 35,
-        marginTop: -35
+        marginTop: -35,
+        borderWidth:0.5,
+        borderColor:"#dadada"
     },
     head: {
         justifyContent: 'flex-start',

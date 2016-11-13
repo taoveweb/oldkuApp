@@ -23,8 +23,10 @@ class Main extends Component {
 
     getSelectedImages=(data)=>{
         //设置发布状态
-        const {setPublishBtnState}=this.props;
+
+        const {setPublishBtnState,actions}=this.props;
         if(data.length>0){
+            actions.publishSelectImages(data)
             setPublishBtnState(false)
         }else{
             setPublishBtnState(true)
@@ -35,6 +37,8 @@ class Main extends Component {
         return (
             <View style={styles.container}>
                 <CameraRollPicker
+                    initialListSize={1}
+                    pageSize={1}
                     callback={this.getSelectedImages} />
             </View>
         );

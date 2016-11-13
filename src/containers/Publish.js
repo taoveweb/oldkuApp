@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        todos: state.publish
+        publish: state.publish
     };
 }
 

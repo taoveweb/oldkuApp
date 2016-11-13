@@ -1,10 +1,13 @@
 import * as types from '../constants/ActionTypes';
 
-export default function(state = {index: 0}, action) {
-  switch(action.type) {
-    case types.PUBLISH:
-      return {...state, index: action.index};
-  }
-
-  return state;
+export default function (state = {imgs: []}, action) {
+    switch (action.type) {
+        case types.PUBLISH:
+            return {imgs: action.imgs};
+        case types.PUBLSIH_SELECT_IMAGES:
+            return {imgs: action.imgs};
+        default:
+            //console.log('default',state)
+            return state
+    }
 }

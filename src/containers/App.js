@@ -7,9 +7,10 @@ import {
 } from 'react-native';
 import MainTabsView from './MainTabsView';
 import EditView from './EditView';
+import PublishSelected from './PublishSelected';//发布图片
 import BroswerView from './BroswerView';
 
-const ROUTES = { MainTabsView, BroswerView, EditView };
+const ROUTES = { MainTabsView, BroswerView, EditView ,PublishSelected};
 
 class App extends Component {
   constructor(props){
