@@ -59,7 +59,7 @@ class Main extends Component {
 
         return (
 
-            <View style={{flex:1,backgroundColor:'#fff',height:height-249}}>
+            <View style={{flex:1,backgroundColor:'#fff',height:height+50}}>
 
                 <View style={styles.head}>
                     <Image source={{uri:APIs.host+img}} style={styles.headerPic}/>

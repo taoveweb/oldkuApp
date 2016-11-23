@@ -18,7 +18,7 @@ class Header extends Component {
   }
   render() {
     return (
-      <View style={[Theme.header,{backgroundColor:'transparent',borderBottomWidth:0,height:200}]}>
+      <View style={[Theme.header,{backgroundColor:'transparent',borderBottomWidth:0,height:24}]}>
 
           <TouchableHighlight
             activeOpacity={Theme.active.opacity}
