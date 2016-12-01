@@ -70,7 +70,7 @@ class Personal extends Component {
 
                 onChangeHeaderVisibility={
                     (a)=>{
-                        console.log(a)
+                        //console.log(a)
                     }
 
 
