@@ -26,15 +26,10 @@ class Main extends Component {
 
     renderJinXuan = () => {
         const {homeList} = this.props;
-        //console.log(this.props,'props')
         var winsize = Dimensions.get('window');
-        //console.log(this.state.num++,homeList,'a')
         if (!homeList || !homeList.data || homeList.data.length == 0) {
-            // console.log('d')
             return null
         }
-        //console.log(this.state.num++,homeList,'b');
-        //console.log(homeList.data.length)
         var excellent = [];
         homeList.data.forEach((item, i)=> {
             if (item.excellent == 1) {
@@ -43,7 +38,6 @@ class Main extends Component {
         });
         if (excellent.length > 0) {
             return excellent.map((item, i)=> {
-                //console.log(this.state.num++,'c')
                 return (
                     <ListItem key={item["_id"]} item={item} winsize={winsize}/>
                 )
@@ -59,15 +53,11 @@ class Main extends Component {
 
     renderGuanzhu = () => {
         const {homeList} = this.props;
-        //console.log(this.props,'props')
         var winsize = Dimensions.get('window');
-        //console.log(this.state.num++,homeList,'a')
         if (!homeList || !homeList.data || homeList.data.length == 0) {
-            // console.log('d')
             return null
         }
         return homeList.data.map((item, i)=> {
-            //console.log(this.state.num++,'c')
             if (item.excellent == 0) {
                 return (
                     <ListItem key={item["_id"]} item={item} winsize={winsize}/>

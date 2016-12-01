@@ -7,7 +7,6 @@ export default function (state = {imgs: []}, action) {
         case types.PUBLSIH_SELECT_IMAGES:
             return {imgs: action.imgs};
         default:
-            //console.log('default',state)
             return state
     }
 }

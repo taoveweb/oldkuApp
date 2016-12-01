@@ -17,11 +17,9 @@ export default function homeList(state = initialState, action) {
             return Object.assign({}, state, {isFetchingMoreList: true,isFetchingHomeList:false});
 
         case types.FETCH_ALL_HOME_LIST:
-            //console.log('FETCH_ALL_HOME_LIST')
 
             var data=state.data.concat(action.data)
             var newdata= Object.assign({},{data:data},{isFetchingMoreList: false,isFetchingHomeList:false});
-            //console.log(newdata,'newdata')
             return newdata;
         case types.RERESH_HOME_LIST:
             if(action.data.length>0){
@@ -42,7 +40,6 @@ export default function homeList(state = initialState, action) {
             return newdata;
 
         default:
-            //console.log('default',state)
             return state
     }
 }

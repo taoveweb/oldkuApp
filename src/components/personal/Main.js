@@ -24,7 +24,6 @@ class Main extends Component {
     }
 
     onScrollHadle = (event: Object)=> {
-        console.log(event)
     }
     //图博列表
     renderＴuboList = ()=> {
@@ -49,17 +48,15 @@ class Main extends Component {
     render() {
         const {homeList}=this.props;
         var img='';
-        console.log(homeList)
         if(homeList.data.length>0){
             img=homeList.data[0]['author']['headPicture']
         }
 
 
-        console.log(APIs.host+img)
 
         return (
 
-            <View style={{flex:1,backgroundColor:'#fff',height:height+50}}>
+            <View style={{backgroundColor:'#fff'}}>
 
                 <View style={styles.head}>
                     <Image source={{uri:APIs.host+img}} style={styles.headerPic}/>
@@ -93,7 +90,7 @@ class Main extends Component {
 
                 >
                     {<ScrollView
-                        scrollEnabled={true}
+                        scrollEnabled={false}
                         onScroll={this.onScrollHadle}
                         style={[styles.container, {marginTop: 40,}]}
                         tabLabel='图博'
@@ -106,6 +103,7 @@ class Main extends Component {
                     </ScrollView>}
 
                     <ScrollView
+                        scrollEnabled={false}
                         style={{marginTop: 40}}
                         tabLabel='喜欢'
                     >
@@ -114,6 +112,7 @@ class Main extends Component {
                         </View>
                     </ScrollView>
                     <ScrollView
+                        scrollEnabled={false}
                         style={{marginTop: 40,flex:1}}
                         tabLabel='资料'
                     >
